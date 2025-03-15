@@ -1,0 +1,48 @@
+#name: rental_app
+name: app
+
+description: "A new Flutter project."
+
+publish_to: 'none'
+
+version: 1.0.0+1
+
+environment:
+  sdk: ^3.6.2
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  cupertino_icons: ^1.0.8
+  firebase_core: ^3.11.0
+  firebase_auth: ^5.4.2
+  cloud_firestore: ^5.6.3
+  google_sign_in: ^6.2.2
+
+  # ✅ Added for faster image loading
+  cached_network_image: ^3.3.1
+  
+  # ✅ Fixed provider version
+  provider: ^6.1.2
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+  flutter_lints: ^5.0.0
+
+flutter:
+  uses-material-design: true
+
+  assets:
+    - assets/head.png
+    - assets/Kia_Seltos.jpeg
+    - assets/Drill.jpg
+    - assets/Appartment.jpg
+    - assets/Alto.webp
+    - assets/Dslr.webp
+    - assets/Bmw.jpg
+    - assets/google_logo.png
+    
+

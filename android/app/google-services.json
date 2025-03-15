@@ -1,0 +1,46 @@
+{
+    "project_info": {
+      "project_number": "827161747707",
+      "project_id": "miniprojects6",
+      "storage_bucket": "miniprojects6.firebasestorage.app"
+    },
+    "client": [
+      {
+        "client_info": {
+          "mobilesdk_app_id": "1:827161747707:android:7ce172d7c875e031c6105e",
+          "android_client_info": {
+            "package_name": "com.example.rental_app"
+          }
+        },
+        "oauth_client": [
+          {
+            "client_id": "827161747707-nkjn7s9efgippsbfvhotjtssnnqubvnb.apps.googleusercontent.com",
+            "client_type": 3
+          }
+        ],
+        "api_key": [
+          {
+            "current_key": "AIzaSyAuvDDkfNXacWCGIArJzMpG7b0Nq6xePN0"
+          }
+        ],
+        "services": {
+          "appinvite_service": {
+            "other_platform_oauth_client": [
+              {
+                "client_id": "827161747707-nkjn7s9efgippsbfvhotjtssnnqubvnb.apps.googleusercontent.com",
+                "client_type": 3
+              },
+              {
+                "client_id": "827161747707-52soup192cb0uluvhbtep458pdbjrfuo.apps.googleusercontent.com",
+                "client_type": 2,
+                "ios_info": {
+                  "bundle_id": "com.example.rentalApp"
+                }
+              }
+            ]
+          }
+        }
+      }
+    ],
+    "configuration_version": "1"
+  }
