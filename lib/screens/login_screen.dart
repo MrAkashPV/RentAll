@@ -1,43 +1,56 @@
+import 'dart:io' show Platform;
+import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:app/screens/home_screen.dart';
 
 class LoginScreen extends StatefulWidget {
-
   @override
   _LoginScreenState createState() => _LoginScreenState();
 }
 
 class _LoginScreenState extends State<LoginScreen> {
   final FirebaseAuth _auth = FirebaseAuth.instance;
+  final GoogleSignIn _googleSignIn = GoogleSignIn();
 
-  // Function to handle Google Sign-In
+  // Handle Google Sign-In for Web & Mobile
   Future<void> _signInWithGoogle() async {
-  final GoogleSignIn googleSignIn = GoogleSignIn(
-    clientId: "827161747707-nkjn7s9efgippsbfvhotjtssnnqubvnb.apps.googleusercontent.com", // 🔹 Add Client ID Here (for Web)
-  );
+    try {
+      GoogleSignInAccount? googleUser;
 
-  final GoogleSignInAccount? googleUser = await googleSignIn.signIn();
-  if (googleUser == null) return; // User canceled sign-in
+      if (kIsWeb) {
+        // 🔹 Web: Use signInSilently() for FedCM
+        googleUser = await _googleSignIn.signInSilently() ?? await _googleSignIn.signIn();
+      } else {
+        // 🔹 Mobile: Normal signIn()
+        googleUser = await _googleSignIn.signIn();
+      }
 
-  final GoogleSignInAuthentication googleAuth = await googleUser.authentication;
+      if (googleUser == null) return; // User canceled
 
-  final OAuthCredential credential = GoogleAuthProvider.credential(
-    accessToken: googleAuth.accessToken,
-    idToken: googleAuth.idToken,
-  );
+      final GoogleSignInAuthentication googleAuth = await googleUser.authentication;
 
-  final UserCredential userCredential = await FirebaseAuth.instance.signInWithCredential(credential);
+      final OAuthCredential credential = GoogleAuthProvider.credential(
+        accessToken: googleAuth.accessToken,
+        idToken: googleAuth.idToken,
+      );
 
-  if (userCredential.user != null) {
-    Navigator.pushReplacement(
-      context,
-      MaterialPageRoute(builder: (context) => HomeScreen()),
-    );
+      final UserCredential userCredential = await _auth.signInWithCredential(credential);
+
+      if (userCredential.user != null) {
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(builder: (context) => HomeScreen()),
+        );
+      }
+    } catch (error) {
+      print("Google Sign-In Error: $error");
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text("Google Sign-In failed. Please try again.")),
+      );
+    }
   }
-}
-
 
   @override
   Widget build(BuildContext context) {

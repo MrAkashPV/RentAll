@@ -552,48 +552,54 @@ class ItemDetailsScreen extends StatelessWidget {
           ],
         ),
       ),
-      bottomNavigationBar: BottomAppBar(
-        child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-          child: Row(
-            children: [
-              Expanded(
-                child: OutlinedButton(
-                  onPressed: () {
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(content: Text("Contact feature coming soon!")),
-                    );
-                  },
-                  child: Padding(
-                    padding: EdgeInsets.symmetric(vertical: 12),
-                    child: Text('Contact Owner'),
-                  ),
-                ),
-              ),
-              SizedBox(width: 16),
-Expanded(
-  child: ElevatedButton(
-    onPressed: () {
-      Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (context) => PaymentScreen(item: item), // ✅ Pass the selected rental item
-        ),
-      );
-    },
+      bottomNavigationBar: SafeArea(
+  child: BottomAppBar(
     child: Padding(
-      padding: EdgeInsets.symmetric(vertical: 14),
-      child: Text('RENT NOW'),
+      padding: EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+      child: Row(
+        children: [
+          Expanded(
+            child: OutlinedButton(
+              onPressed: () {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(content: Text("Contact feature coming soon!")),
+                );
+              },
+              style: OutlinedButton.styleFrom(
+                padding: EdgeInsets.symmetric(vertical: 12),
+              ),
+              child: Text('Contact Owner'),
+            ),
+          ),
+          SizedBox(width: 16),
+          Expanded(
+            child: ElevatedButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => PaymentScreen(item: item),
+                  ),
+                );
+              },
+              style: ElevatedButton.styleFrom(
+                padding: EdgeInsets.symmetric(vertical: 14),
+              ),
+              child: Text('RENT NOW'),
+            ),
+          ),
+        ],
+      ),
     ),
   ),
-),
+)
 
 
 
-            ],
-          ),
-        ),
-      ),
+            
+          
+        
+      
     );
   }
 

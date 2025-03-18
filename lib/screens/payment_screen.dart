@@ -45,7 +45,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
 
             SizedBox(height: 8),
             Text(
-  "Price: ₹${widget.item?.price?.toStringAsFixed(2) ?? '0.00'}/day",
+  "Price: ₹${widget.item?.price.toStringAsFixed(2) ?? '0.00'}/day",
   style: TextStyle(fontSize: 18, color: Colors.green)),
 
 SizedBox(height: 20),
@@ -98,7 +98,7 @@ SizedBox(height: 20),
               onPressed: _processPayment,
               child: Padding(
                 padding: EdgeInsets.symmetric(vertical: 12),
-                child: Text("Pay ₹${widget.item?.price?.toStringAsFixed(2) ?? '0.00'}"),
+                child: Text("Pay ₹${widget.item?.price.toStringAsFixed(2) ?? '0.00'}"),
 
               ),
             ),
